@@ -32,5 +32,9 @@ function getRequestForItems() {
 
 function createFormHandler(e) {
     e.preventDefault();
-    console.log(e);
+    const nameInput = document.querySelector("#input-name").value;
+    const priceInput = document.querySelector("#input-price").value;
+    const descriptionInput = document.querySelector("#input-description").value;
+    const urlInput = document.querySelector("#input-url").value;
+    const categoryId = parseInt(document.querySelector("#categories").value);
 }
