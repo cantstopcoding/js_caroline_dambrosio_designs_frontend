@@ -2,6 +2,10 @@ const itemsApi = "http://localhost:3000/api/v1/items"
 
 document.addEventListener('DOMContentLoaded', () => {
     getRequestForItems()
+
+    const createItemForm = document.querySelector("#create-item-form");
+
+    createItemForm.addEventListener("submit", (e) => createFormHandler(e));
 });
 
 function getRequestForItems() {
@@ -24,4 +28,9 @@ function getRequestForItems() {
             document.querySelector('#item-container').innerHTML += itemMarkup
         });
     });
+}
+
+function createFormHandler(e) {
+    e.preventDefault();
+    console.log(e);
 }
