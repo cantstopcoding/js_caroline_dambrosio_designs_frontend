@@ -35,6 +35,21 @@ function createFormHandler(e) {
     const nameInput = document.querySelector("#input-name").value;
     const priceInput = document.querySelector("#input-price").value;
     const descriptionInput = document.querySelector("#input-description").value;
-    const urlInput = document.querySelector("#input-url").value;
+    const imageInput = document.querySelector("#input-url").value;
     const categoryId = parseInt(document.querySelector("#categories").value);
+    postFetch(nameInput, priceInput, descriptionInput, imageInput, categoryId);
+}
+
+function postFetch(name, price, description, image_url, category_id) {
+    fetch(itemsApi, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            name: name,
+            price: price,
+            description: description,
+            image_url: image_url,
+            category_id: category_id      
+        })
+    })
 }
