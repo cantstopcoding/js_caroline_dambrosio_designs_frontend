@@ -7,6 +7,30 @@
     <script src="index.js"></script>
 </head>
 <body>
+    <div class="form-container">
+
+        <form id="create-item-form" style="">
+            <h3>Create a Item!</h3>
+        
+            <input id='input-title' type="text" name="title" value="" placeholder="Enter your Item name..." class="input-text">
+            <br><br>
+            <textarea id='input-description' name="description" rows="8" cols="80" value="" placeholder="Enter your Item description..."></textarea>
+            <br><br>
+            <input id='input-url' type="text" name="image" value="" placeholder="Enter your Item image URL..." class="input-text">
+            <br><br>
+        
+            <select id="categories" name="categories">
+            <option value="1">Dresses</option>
+            <option value="2">Purses</option>
+            <option value="3">Sandles</option>
+            </select>
+            <br><br>
+        
+            <input id= 'create-button' type="submit" name="submit" value="Create New Item" class="submit">
+        </form>
+      
+    </div>
+    
     <div id="item-container">
         
     </div>
