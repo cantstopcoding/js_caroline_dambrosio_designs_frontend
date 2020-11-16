@@ -18,7 +18,7 @@ function getRequestForItems() {
             <div data-id=${item.id}>
                 <img src=${item.attributes.image_url} height="200" width="250">
                 <h3>${item.attributes.name}</h3>
-                <h3>${item.attributes.price}</h3>
+                <h3>$${item.attributes.price}</h3>
                 <h3>${item.attributes.description}</h3>
                 <p>${item.attributes.category.name}</p>
                 <button data-id=${item.id}>edit</button>
@@ -41,15 +41,27 @@ function createFormHandler(e) {
 }
 
 function postFetch(name, price, description, image_url, category_id) {
+    const bodyData = {name, price, description, image_url, category_id}
+    
     fetch(itemsApi, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-            name: name,
-            price: price,
-            description: description,
-            image_url: image_url,
-            category_id: category_id      
-        })
+        body: JSON.stringify(bodyData)
     })
+    .then(response => response.json())
+    .then(item => {
+        const itemData = item.data.attributes;
+        const itemMarkup = `
+        <div data-id=${item.id}>
+            <img src=${itemData.image_url} height="200" width="250">
+            <h3>${itemData.name}</h3>
+            <h3>${itemData.price}</h3>
+            <h3>${itemData.description}</h3>
+            <p>${itemData.category.name}</p>
+            <button data-id=${itemData.id}>edit</button>
+        </div>
+        <br><br>`;
+
+        document.querySelector('#item-container').innerHTML += itemMarkup;
+    });
 }
