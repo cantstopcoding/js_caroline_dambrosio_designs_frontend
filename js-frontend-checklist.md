@@ -12,23 +12,23 @@ Quick note on frontend JS project design can be found in PART 3 notes.
 
 **Connect your API to your frontend!** 
 
- 5. Think about the JS mantra and answer this question: When the DOM Content is Loaded, I want to make a GET fetch and then manipulate the DOM in what way (usually render the data)?
+[x] 5. Think about the JS mantra and answer this question: When the DOM Content is Loaded, I want to make a GET fetch and then manipulate the DOM in what way (usually render the data)?
  6. Create DOMContentLoaded event listener and console.log("loaded") as the event handler to confirm we've properly set up the listener.
- 7. We're eventually going to make a call to the index route of our API (ex: localhost:3000/api/v1/syllabuses). Run your rails server and visit that end point in the browser to confirm the expected JSON data is present.
- 8. We can see the JSON data in the browser but in order to access it in our frontend, we'll need to setup Cross Origin Resource Sharing (CORS). In order to do this we'll need to do a couple things:
+[x] 7. We're eventually going to make a call to the index route of our API (ex: localhost:3000/api/v1/syllabuses). Run your rails server and visit that end point in the browser to confirm the expected JSON data is present.
+[x] 8. We can see the JSON data in the browser but in order to access it in our frontend, we'll need to setup Cross Origin Resource Sharing (CORS). In order to do this we'll need to do a couple things:
 Navigate to your Gemfile and uncomment gem 'rack-cors' then bundle install. You can read more about CORS in the PART 3 notes and here.
 Inside of config/initializers/cors.rb uncomment the CORS code and update origins 'example.com' to origins '*'
- 9. Commit and push this code!
+[x] 9. Commit and push this code!
 Receive (GET) data from the server
 
- 10. GET request
+[x] 10. GET request
 Create a new branch for GET implementation.
 Create your get____ function (ex: function getToys()) that will make a call to your index endPoint in your API, make your GET request inside the function and console.log the json data, then call your get___ function in the DOMContentLoaded event listener.
 Once you have confirmed your GET request is returning the JSON you were expecting, use that data to update the DOM.(see PART 3 notes for example)
 Once working: Commit and push this code! Then merge branch to master.
 Submit (POST) data to the server
 
- 11. POST request
+[] 11. POST request
 Create a new branch for POST implementation.
 Create form
 Create submit event listener
