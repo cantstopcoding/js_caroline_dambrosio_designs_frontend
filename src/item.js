@@ -1,1 +1,5 @@
-console.log("in item.js!")
+class Item {
+    constructor(data) {
+        this.id = data.id;
+    }
+}

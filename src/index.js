@@ -13,6 +13,8 @@ function getRequestForItems() {
     .then(response => response.json())
     .then(items => {
         items.data.forEach(item => {
+            // debugger
+            let newItem = new Item(item);
             render(item);
         });
     });
