@@ -13,25 +13,10 @@ function getRequestForItems() {
     .then(response => response.json())
     .then(items => {
         items.data.forEach(item => {
-            render(item);
+            let newItem = new Item(item, item.attributes);
+            document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
         });
     });
-}
-
-function render(item) {
-    // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
-    const itemMarkup = `
-    <div data-id=${item.id}>
-        <img src=${item.attributes.image_url} height="200" width="250">
-        <h3>${item.attributes.name}</h3>
-        <h3>$${item.attributes.price}</h3>
-        <h3>${item.attributes.description}</h3>
-        <p>${item.attributes.category.name}</p>
-        <button data-id=${item.id}>edit</button>
-    </div>
-    <br><br>`;
-
-    document.querySelector('#item-container').innerHTML += itemMarkup
 }
 
 function createFormHandler(e) {
@@ -55,6 +40,7 @@ function postFetch(name, price, description, image_url, category_id) {
     .then(response => response.json())
     .then(item => {
         const itemData = item.data;
-        render(itemData);
+        let newItem = new Item(itemData, itemData.attributes);
+        document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
     });
 }
