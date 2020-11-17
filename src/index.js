@@ -14,7 +14,7 @@ function getRequestForItems() {
     .then(items => {
         items.data.forEach(item => {
             // debugger
-            let newItem = new Item(item);
+            let newItem = new Item(item, item.attributes);
             render(item);
         });
     });
