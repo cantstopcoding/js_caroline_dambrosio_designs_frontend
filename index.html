@@ -6,7 +6,7 @@
       <meta name="description" content="">
       <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
       <meta name="generator" content="Jekyll v4.1.1">
-      <title>Album example · Bootstrap</title>
+      <title>Caroline Dambrosio Designs · Bootstrap</title>
 
       <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
 
@@ -78,24 +78,34 @@
 </header>
 
 <main role="main">
-
     <section class="jumbotron text-center">
         <div class="container">
             <form id="create-item-form">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Name</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <label for="name">Name</label>
+                    <input id="input-name" type="text" name="name" value="" placeholder="Enter your Item name..." class="form-control"> <!-- aria-describedby="nameHelp" -->
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Description</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="description">Description</label>
+                    <textarea id='input-description' name="description" class="form-control"  rows="8" cols="80" value="" placeholder="Enter your Item description..."></textarea></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="price">Price</label>
+                  <input id="input-price" type="number" name="price" value="" placeholder="Enter your Item price..." class="form-control"> <!-- aria-describedby="nameHelp" -->
+                </div>
+                <div class="form-group">
+                  <label for="image">Image Url</label>
+                  <input id='input-url' type="text" name="image" value="" placeholder="Enter Item Image URL..." class="form-control"> <!-- aria-describedby="nameHelp" -->
                 </div>
                 <div class="form-group">  
-                    <select class="form-control">
-                      <option>Default select</option>
+                  <!-- <label for="categories">Category</label> -->
+                    <select id="categories" class="form-control">
+                        <option value="1">Dresses</option>
+                        <option value="2">Purses</option>
+                        <option value="3">Sandles</option>
                     </select>
                 </div>
+                <input id= 'create-button' type="submit" name="submit" value="Create New Item" class="submit">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -118,7 +128,7 @@
     <p class="float-right">
       <a href="#">Back to top</a>
     </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p>&copy; Caroline Dambrosio Designs</p>
     <p>New to Bootstrap? <a href="https://getbootstrap.com/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
   </div>
 </footer>
