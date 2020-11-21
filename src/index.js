@@ -1,6 +1,7 @@
 const itemsApi = "http://localhost:3000/api/v1/items"
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM is loaded!')
     getRequestForItems()
 
     const createItemForm = document.querySelector("#create-item-form");
