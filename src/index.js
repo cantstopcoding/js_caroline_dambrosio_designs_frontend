@@ -5,8 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
     getRequestForItems()
 
     const createItemForm = document.querySelector("#create-item-form");
-
     createItemForm.addEventListener("submit", (e) => createFormHandler(e));
+    
+    const loginForm = document.querySelector("#login-form");
+    loginForm.addEventListener("submit", (e) => loginFormHandler(e));
 });
 
 function getRequestForItems() {
