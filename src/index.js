@@ -22,6 +22,11 @@ function getRequestForItems() {
     });
 }
 
+function loginFormHandler() {
+    e.preventDefault;
+    console.log(e);
+}
+
 function createFormHandler(e) {
     e.preventDefault();
     const nameInput = document.querySelector("#input-name").value;
