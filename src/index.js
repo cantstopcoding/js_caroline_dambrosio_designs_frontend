@@ -24,7 +24,14 @@ function getRequestForItems() {
 
 function loginFormHandler(e) {
     e.preventDefault();
-    console.log(e);
+    const emailInput = e.target.querySelector('#login-email').value
+    const passwordInput = e.target.querySelector('#login-password').value
+    loginFetch(emailInput, passwordInput)
+    // console.log(e);
+}
+
+function loginFetch() {
+    
 }
 
 function createFormHandler(e) {
