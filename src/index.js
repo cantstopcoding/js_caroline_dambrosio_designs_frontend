@@ -22,8 +22,8 @@ function getRequestForItems() {
     });
 }
 
-function loginFormHandler() {
-    e.preventDefault;
+function loginFormHandler(e) {
+    e.preventDefault();
     console.log(e);
 }
 
