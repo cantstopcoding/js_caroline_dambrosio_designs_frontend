@@ -42,10 +42,13 @@ function loginFetch(email, password) {
     .then(response => response.json())
     .then(json => {
         localStorage.setItem('token', json.jwt)
+        renderUserProfile()
     })
 }
 
-
+function renderUserProfile() {
+    console.log(localStorage.getItem('token'))
+}
 
 function createFormHandler(e) {
     e.preventDefault();
