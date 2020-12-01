@@ -31,10 +31,18 @@ function loginFormHandler(e) {
     // console.log(e);
 }
 
-function loginFetch() {
-    const bodyData = {user: { email, password}}
+function loginFetch(email, password) {
+    const bodyData = {user: { email, password }}
 
-    fetch(loginApi)
+    fetch(loginApi, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(response => response.json())
+    .then(json => {
+        console.log(json)
+    })
 }
 
 function createFormHandler(e) {
