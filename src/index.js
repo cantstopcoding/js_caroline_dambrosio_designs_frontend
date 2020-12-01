@@ -1,4 +1,5 @@
 const itemsApi = "http://localhost:3000/api/v1/items"
+const loginApi = "http://localhost:3000/api/v1/login"
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM is loaded!')
@@ -31,7 +32,9 @@ function loginFormHandler(e) {
 }
 
 function loginFetch() {
-    
+    const bodyData = {user: { email, password}}
+
+    fetch(loginApi)
 }
 
 function createFormHandler(e) {
