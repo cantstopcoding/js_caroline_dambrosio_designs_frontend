@@ -41,9 +41,11 @@ function loginFetch(email, password) {
     })
     .then(response => response.json())
     .then(json => {
-        console.log(json)
+        localStorage.setItem('token', json.jwt)
     })
 }
+
+
 
 function createFormHandler(e) {
     e.preventDefault();
