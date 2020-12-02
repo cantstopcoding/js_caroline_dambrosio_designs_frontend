@@ -1,5 +1,6 @@
 const itemsApi = "http://localhost:3000/api/v1/items"
 const loginApi = "http://localhost:3000/api/v1/login"
+const profileApi = "http://localhost:3000/api/v1/profile"
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM is loaded!')
@@ -47,8 +48,18 @@ function loginFetch(email, password) {
 }
 
 function renderUserProfile() {
-    console.log(localStorage.getItem('token'))
-}
+    console.log(localStorage.getItem('token'));
+    fetch(profileApi, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+    .then(response => response.json())
+    .then(json => {
+      alert(`Hi ${json.user.data.attributes.first_name}!`)
+    })
+  }
 
 function createFormHandler(e) {
     e.preventDefault();
