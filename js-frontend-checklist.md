@@ -59,3 +59,11 @@ Confirm
  Your commit messages are meaningful
  You made the changes in a commit that relate to the commit message
  You don't include changes in a commit that aren't related to the commit message
+
+
+ Create a review object:
+ Should I do a review on the same page?
+ I could hide the reviews and once it is clicked then it can be shown
+ I can also review Item and enter it
+ I'm thinking I can render a new page then enter a review and them the review appears at the bottom of the page
+
