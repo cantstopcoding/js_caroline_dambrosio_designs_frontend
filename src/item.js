@@ -18,7 +18,7 @@ class Item {
                 <div class="card mb-4 shadow-sm">
                     <img src="${this.image_url}" class="card-img-top" alt="...">
                     <div class="card-body">
-                    <h5 class="card-title">${this.name}</h5>
+                        <h5 class="card-title">${this.name}</h5>
                         <p class="card-text">${this.description}</p>
                         <p class="card-text">$${this.price}</p>
                         <div class="d-flex justify-content-between align-items-center">
@@ -27,6 +27,17 @@ class Item {
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                             </div>
                             <small class="text-muted">Category: ${this.category.name}</small>
+                        </div>
+                    </div>
+
+                    <p>
+                        <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Reviews
+                        </button>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            This is a review!!!
                         </div>
                     </div>
                 </div>
