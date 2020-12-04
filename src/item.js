@@ -37,7 +37,15 @@ class Item {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            This is a review!!!
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Write a Review... </label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
