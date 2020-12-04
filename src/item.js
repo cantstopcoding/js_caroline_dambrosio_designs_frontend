@@ -38,7 +38,7 @@ class Item {
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-                            <form>
+                            <form id="create-review-form">
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Write a Review... </label>
                                     <textarea class="form-control" id="create-review-form" rows="3"></textarea>
