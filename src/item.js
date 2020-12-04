@@ -32,17 +32,17 @@ class Item {
                     </div>
 
                     <p>
-                        <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse-reviews" aria-expanded="false" aria-controls="collapse-reviews">
                             Reviews
                         </button>
                     </p>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapse-reviews">
                         <div class="card card-body">
                             <form id="create-review-form">
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Write a Review... </label>
-                                    <textarea class="form-control" id="create-review-form" rows="3"></textarea>
-                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                    <label for="content">Write a Review... </label>
+                                    <textarea class="form-control" id="review-content" name="content" rows="3"></textarea>
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse-reviews" aria-expanded="false" aria-controls="collapse-reviews">
                                         Submit
                                     </button>
                                 </div>

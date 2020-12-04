@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const createItemForm = document.querySelector("#create-item-form");
     createItemForm.addEventListener("submit", (e) => createFormHandler(e));
     
+    // const createItemForm = document.querySelector("#create-review-form");
+    // createReviewForm.addEventListener("submit", (e) => createFormHandler(e));
+    
     const loginForm = document.querySelector("#login-form");
     loginForm.addEventListener("submit", (e) => loginFormHandler(e));
 });
