@@ -73,7 +73,7 @@ class Item {
         this.reviews
     }
 
-    reviewButton() {
+    reviewForm() {
         const createReviewForm = document.querySelector("#create-review-form");
         console.log(createReviewForm)
     }
