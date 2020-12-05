@@ -41,18 +41,21 @@ class Item {
                             <form id="create-review-form">
                                 <div class="form-group">
                                     <label for="content">Write a Review... </label>
-                                    <textarea class="form-control" id="review-content" name="content" rows="3"></textarea>
+                                    <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
                                     <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse-reviews" aria-expanded="false" aria-controls="collapse-reviews">
                                         Submit
                                     </button>
                                 </div>
                             </form>
-                            ${this.reviews}
+                            <div class="container" id="review-container">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `
+
         
         
         // return `
@@ -65,6 +68,9 @@ class Item {
         //     <button data-id=${this.id}>edit</button>
         // </div>
         // <br><br>`;
+    }
+    renderReview() {
+        this.reviews
     }
 }
 

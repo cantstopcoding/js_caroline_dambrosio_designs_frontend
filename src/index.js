@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const createItemForm = document.querySelector("#create-item-form");
     createItemForm.addEventListener("submit", (e) => createFormHandler(e));
     
-    // const createItemForm = document.querySelector("#create-review-form");
-    // createReviewForm.addEventListener("submit", (e) => createFormHandler(e));
+    // const createReviewForm = document.querySelector("#create-review-form");
+    // createReviewForm.addEventListener("submit", (e) => createReviewFormHandler(e));
     
     const loginForm = document.querySelector("#login-form");
     loginForm.addEventListener("submit", (e) => loginFormHandler(e));
@@ -74,6 +74,11 @@ function createFormHandler(e) {
     postFetch(nameInput, priceInput, descriptionInput, imageInput, categoryId);
 }
 
+// function createReviewFormHandler(e) {
+    // const contentInput document.querySelector("#input-content").value;
+    // reviewPostFetch(nameInput, priceInput, descriptionInput, imageInput, categoryId);
+// }
+
 function postFetch(name, price, description, image_url, category_id) {
     const bodyData = {name, price, description, image_url, category_id}
     
@@ -89,3 +94,20 @@ function postFetch(name, price, description, image_url, category_id) {
         document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
     });
 }
+
+
+// function reviewPostFetch(content) {
+//     const bodyData = {content}
+    
+//     fetch(itemsApi, {
+//         method: "POST",
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify(bodyData)
+//     })
+//     .then(response => response.json())
+//     .then(item => {
+//         const itemData = item.data;
+//         let newItem = new Item(itemData, itemData.attributes);
+//         document.querySelector('#review-container').innerHTML += newItem.renderReview()
+//     });
+// }
