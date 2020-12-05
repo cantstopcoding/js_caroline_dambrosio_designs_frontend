@@ -32,17 +32,17 @@ class Item {
                     </div>
 
                     <p>
-                        <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse-reviews" aria-expanded="false" aria-controls="collapse-reviews">
+                        <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                             Reviews
                         </button>
                     </p>
-                    <div class="collapse" id="collapse-reviews">
+                    <div class="collapse" id="collapseExample">
                         <div class="card card-body">
                             <form id="create-review-form">
                                 <div class="form-group">
                                     <label for="content">Write a Review... </label>
                                     <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
-                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapse-reviews" aria-expanded="false" aria-controls="collapse-reviews">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                                         Submit
                                     </button>
                                 </div>
@@ -71,6 +71,11 @@ class Item {
     }
     renderReview() {
         this.reviews
+    }
+
+    reviewButton() {
+        const createReviewForm = document.querySelector("#create-review-form");
+        console.log(createReviewForm)
     }
 }
 

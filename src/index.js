@@ -2,6 +2,7 @@ const itemsApi = "http://localhost:3000/api/v1/items"
 const loginApi = "http://localhost:3000/api/v1/login"
 const profileApi = "http://localhost:3000/api/v1/profile"
 
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM is loaded!')
     getRequestForItems()
@@ -9,9 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const createItemForm = document.querySelector("#create-item-form");
     createItemForm.addEventListener("submit", (e) => createFormHandler(e));
     
-    // const createReviewForm = document.querySelector("#create-review-form");
-    // createReviewForm.addEventListener("submit", (e) => createReviewFormHandler(e));
-    
+   
     const loginForm = document.querySelector("#login-form");
     loginForm.addEventListener("submit", (e) => loginFormHandler(e));
 });
@@ -23,6 +22,7 @@ function getRequestForItems() {
         items.data.forEach(item => {
             let newItem = new Item(item, item.attributes);
             document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
+            newItem.reviewButton()
         });
     });
 }
@@ -75,8 +75,10 @@ function createFormHandler(e) {
 }
 
 // function createReviewFormHandler(e) {
-    // const contentInput document.querySelector("#input-content").value;
-    // reviewPostFetch(nameInput, priceInput, descriptionInput, imageInput, categoryId);
+//     e.preventDefault()
+//     console.log(e);
+    // const contentInput = document.querySelector("#input-content").value;
+    // reviewPostFetch(content);
 // }
 
 function postFetch(name, price, description, image_url, category_id) {
