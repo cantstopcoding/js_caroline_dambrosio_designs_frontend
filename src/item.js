@@ -7,7 +7,7 @@ class Item {
         this.description = itemAttributes.description
         this.image_url = itemAttributes.image_url
         this.category = itemAttributes.category
-        this.reviews = itemAttributes.reviews.map(review => review.content).join(' ')
+        this.reviews = itemAttributes.reviews.content //.map(review => review.content).join(' ')
         Item.all.push(this)
         console.log(this)
     }
@@ -72,18 +72,56 @@ class Item {
     }
 
     reviewForm() {
+        this.itemReviewsFetch()
+
         const createReviewForm = document.querySelector("#create-review-form");
-        createReviewForm.addEventListener("submit", (e) => {
-            this.createReviewFormHandler(e) 
-        });
+        createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
 
         console.log(createReviewForm)
     }
 
+    itemReviewsFetch() {
+        const itemsApi = "http://localhost:3000/api/v1/items"
+        
+        fetch(itemsApi)
+        .then(response => response.json())
+        .then(items => {
+            items.data.forEach(item => {
+                let arr = []
+                item.attributes.reviews.forEach(r => {
+                    arr.push(r.content)
+                })
+                document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`  
+    
+            })
+        })
+    }
+
+    renderReviewCard() {
+        return `
+            ${this.reviews}
+        `
+    }
+
+    // getRequestForItems() {
+    //     fetch(itemsApi)
+    //     .then(response => response.json())
+    //     .then(items => {
+    //         items.data.forEach(item => {
+    //             let newItem = new Item(item, item.attributes);
+    //             document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
+    //             newItem.reviewForm()
+    //         });
+    //     });
+    // }
+
     createReviewFormHandler(e) {
         e.preventDefault()
-        console.log(e)
+        const contentInput = document.querySelector("input-content").value;
+        this.reviewPostFetch = (contentInput);
     }
+
+
 }
 
 Item.all = [];
