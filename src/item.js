@@ -12,6 +12,18 @@ class Item {
         console.log(this)
     }
 
+    // getRequestForItems() {
+    //     fetch(itemsApi)
+    //     .then(response => response.json())
+    //     .then(items => {
+    //         items.data.forEach(item => {
+    //             let newItem = new this(item, item.attributes);
+    //             document.querySelector('#item-container').innerHTML += this.renderItemCard()
+    //             newItem.reviewForm()
+    //         });
+    //     });
+    // }
+
     renderItemCard() {
         // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
         return `
@@ -67,53 +79,32 @@ class Item {
         // </div>
         // <br><br>`;
     }
-    renderReview() {
-        this.reviews
-    }
 
     reviewForm() {
         this.itemReviewsFetch()
 
-        const createReviewForm = document.querySelector("#create-review-form");
-        createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
+        // const createReviewForm = document.querySelector("#create-review-form");
+        // createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
 
-        console.log(createReviewForm)
+        // console.log(createReviewForm)
     }
 
     itemReviewsFetch() {
-        const itemsApi = "http://localhost:3000/api/v1/items"
+        // const itemsApi = "http://localhost:3000/api/v1/items"
         
-        fetch(itemsApi)
-        .then(response => response.json())
-        .then(items => {
-            items.data.forEach(item => {
-                let arr = []
-                item.attributes.reviews.forEach(r => {
-                    arr.push(r.content)
-                })
-                document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`  
-    
-            })
-        })
+        // fetch(itemsApi)
+        // .then(response => response.json())
+        // .then(items => {
+        //     items.data.forEach(item => {
+        //         // debugger
+        //         let arr = []
+        //         item.attributes.reviews.forEach(r => {
+        //             arr.push(r.content)
+        //         })
+        //         document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`
+        //     })
+        // })
     }
-
-    renderReviewCard() {
-        return `
-            ${this.reviews}
-        `
-    }
-
-    // getRequestForItems() {
-    //     fetch(itemsApi)
-    //     .then(response => response.json())
-    //     .then(items => {
-    //         items.data.forEach(item => {
-    //             let newItem = new Item(item, item.attributes);
-    //             document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
-    //             newItem.reviewForm()
-    //         });
-    //     });
-    // }
 
     createReviewFormHandler(e) {
         e.preventDefault()

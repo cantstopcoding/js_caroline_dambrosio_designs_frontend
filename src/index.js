@@ -22,7 +22,12 @@ function getRequestForItems() {
         items.data.forEach(item => {
             let newItem = new Item(item, item.attributes);
             document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
-            newItem.reviewForm()
+            // debugger
+            let arr = []
+            item.attributes.reviews.forEach(r => {
+                arr.push(r.content)
+            })
+            document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`   
         });
     });
 }
