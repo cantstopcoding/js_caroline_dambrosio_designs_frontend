@@ -42,10 +42,8 @@ class Item {
                                 <div class="form-group">
                                     <label for="content">Write a Review... </label>
                                     <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
-                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                        Submit
-                                    </button>
                                 </div>
+                                <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
                             </form>
                             <div class="container" id="review-container">
                                 
@@ -75,7 +73,16 @@ class Item {
 
     reviewForm() {
         const createReviewForm = document.querySelector("#create-review-form");
+        createReviewForm.addEventListener("submit", (e) => {
+            this.createReviewFormHandler(e) 
+        });
+
         console.log(createReviewForm)
+    }
+
+    createReviewFormHandler(e) {
+        e.preventDefault()
+        console.log(e)
     }
 }
 

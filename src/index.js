@@ -62,7 +62,7 @@ function renderUserProfile() {
     .then(json => {
       alert(`Hi ${json.user.data.attributes.first_name}!`)
     })
-  }
+}
 
 function createFormHandler(e) {
     e.preventDefault();
