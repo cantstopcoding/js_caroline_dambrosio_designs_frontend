@@ -1,6 +1,5 @@
 class Item {
     constructor(item, itemAttributes) {
-        // debugger 
         this.id = item.id
         this.name = itemAttributes.name
         this.price = itemAttributes.price
@@ -27,38 +26,40 @@ class Item {
     renderItemCard() {
         // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
         return `
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="${this.image_url}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${this.name}</h5>
-                        <p class="card-text">${this.description}</p>
-                        <p class="card-text">$${this.price}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                            </div>
-                            <small class="text-muted">Category: ${this.category.name}</small>
-                        </div>
-                    </div>
-
-                    <p>
-                        <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Reviews
-                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <form id="create-review-form">
-                                <div class="form-group">
-                                    <label for="content">Write a Review... </label>
-                                    <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
+            <div id="item-${this.id}">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="${this.image_url}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${this.name}</h5>
+                            <p class="card-text">${this.description}</p>
+                            <p class="card-text">$${this.price}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
-                            </form>
-                            <div class="container" id="review-container">
-                                
+                                <small class="text-muted">Category: ${this.category.name}</small>
+                            </div>
+                        </div>
+
+                        <p>
+                            <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Reviews
+                            </button>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <form id="create-review-form">
+                                    <div class="form-group">
+                                        <label for="content">Write a Review... </label>
+                                        <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
+                                    </div>
+                                    <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
+                                </form>
+                                <div class="container" id="review-container">
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,23 +81,36 @@ class Item {
         // <br><br>`;
     }
 
-    reviewForm() {
-        this.itemReviewsFetch()
+    renderReviewCard(item) {
+        let arr = []
+        item.attributes.reviews.forEach(r => {
+            arr.push(r.content)
+        })
+
+        return `
+            <div class="col-md-4">
+                ${arr.join()}
+            </div>
+            <br>
+        `
+    }
+
+    // reviewForm() {
+        // this.itemReviewsFetch()
 
         // const createReviewForm = document.querySelector("#create-review-form");
         // createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
 
         // console.log(createReviewForm)
-    }
+    // }
 
-    itemReviewsFetch() {
+    // itemReviewsFetch() {
         // const itemsApi = "http://localhost:3000/api/v1/items"
         
         // fetch(itemsApi)
         // .then(response => response.json())
         // .then(items => {
         //     items.data.forEach(item => {
-        //         // debugger
         //         let arr = []
         //         item.attributes.reviews.forEach(r => {
         //             arr.push(r.content)
@@ -104,7 +118,7 @@ class Item {
         //         document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`
         //     })
         // })
-    }
+    // }
 
     createReviewFormHandler(e) {
         e.preventDefault()

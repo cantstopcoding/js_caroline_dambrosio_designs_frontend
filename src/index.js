@@ -22,12 +22,27 @@ function getRequestForItems() {
         items.data.forEach(item => {
             let newItem = new Item(item, item.attributes);
             document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
-            // debugger
-            let arr = []
-            item.attributes.reviews.forEach(r => {
-                arr.push(r.content)
+
+            document.querySelectorAll('#review-container').forEach(cont => {
+                let arr = []
+                item.attributes.reviews.forEach(r => {
+                    // arr.push(r.content)
+                    // debugger
+                })
+                // I need to attach the reviews and items by id
+                // but how can I associate them on the page
+                // I need to attach the review to the item id
+                // but how? 
+                // I'm thinking I can create a div with an item-id and attach the review to that id
+                cont.innerHTML += `
+                <div class="album py-5 bg-light">
+                    <div class="col-md-4">
+                        ${arr.join()}
+                    </div>
+                    <br>
+                </div>    
+                ` 
             })
-            document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`   
         });
     });
 }
