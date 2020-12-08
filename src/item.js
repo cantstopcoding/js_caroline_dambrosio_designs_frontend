@@ -6,43 +6,67 @@ class Item {
         this.description = itemAttributes.description
         this.image_url = itemAttributes.image_url
         this.category = itemAttributes.category
+        this.reviews = itemAttributes.reviews.content //.map(review => review.content).join(' ')
         Item.all.push(this)
         console.log(this)
     }
 
+    // getRequestForItems() {
+    //     fetch(itemsApi)
+    //     .then(response => response.json())
+    //     .then(items => {
+    //         items.data.forEach(item => {
+    //             let newItem = new this(item, item.attributes);
+    //             document.querySelector('#item-container').innerHTML += this.renderItemCard()
+    //             newItem.reviewForm()
+    //         });
+    //     });
+    // }
+
     renderItemCard() {
         // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
-        
         return `
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <img src="${this.image_url}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${this.name}</h5>
-                        <p class="card-text">${this.description}</p>
-                        <p class="card-text">$${this.price}</p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            <div id="item-${this.id}">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="${this.image_url}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${this.name}</h5>
+                            <p class="card-text">${this.description}</p>
+                            <p class="card-text">$${this.price}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                </div>
+                                <small class="text-muted">Category: ${this.category.name}</small>
                             </div>
-                            <small class="text-muted">Category: ${this.category.name}</small>
                         </div>
-                    </div>
 
-                    <p>
-                        <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                            Reviews
-                        </button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            This is a review!!!
+                        <p>
+                            <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Reviews
+                            </button>
+                        </p>
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body">
+                                <form id="create-review-form">
+                                    <div class="form-group">
+                                        <label for="content">Write a Review... </label>
+                                        <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
+                                    </div>
+                                    <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
+                                </form>
+                                <div class="container" id="review-container">
+                                    
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `
+
         
         
         // return `
@@ -56,6 +80,53 @@ class Item {
         // </div>
         // <br><br>`;
     }
+
+    renderReviewCard(item) {
+        let arr = []
+        item.attributes.reviews.forEach(r => {
+            arr.push(r.content)
+        })
+
+        return `
+            <div class="col-md-4">
+                ${arr.join()}
+            </div>
+            <br>
+        `
+    }
+
+    // reviewForm() {
+        // this.itemReviewsFetch()
+
+        // const createReviewForm = document.querySelector("#create-review-form");
+        // createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
+
+        // console.log(createReviewForm)
+    // }
+
+    // itemReviewsFetch() {
+        // const itemsApi = "http://localhost:3000/api/v1/items"
+        
+        // fetch(itemsApi)
+        // .then(response => response.json())
+        // .then(items => {
+        //     items.data.forEach(item => {
+        //         let arr = []
+        //         item.attributes.reviews.forEach(r => {
+        //             arr.push(r.content)
+        //         })
+        //         document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`
+        //     })
+        // })
+    // }
+
+    createReviewFormHandler(e) {
+        e.preventDefault()
+        const contentInput = document.querySelector("input-content").value;
+        this.reviewPostFetch = (contentInput);
+    }
+
+
 }
 
 Item.all = [];

@@ -67,3 +67,6 @@ Confirm
  I can also review Item and enter it
  I'm thinking I can render a new page then enter a review and them the review appears at the bottom of the page
 
+- When the reviews button is clicked, I want to fetch the the reviews and make it appear on the screen
+- I can just fetch the reviews on dom content loaded
+- How do I want my fetched reviews to look?
