@@ -22,22 +22,40 @@ function getRequestForItems() {
         items.data.forEach(item => {
             let newItem = new Item(item, item.attributes);
             document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
+            // reviewsArr = [].push(review)
+            // how do I get the reviews
 
-            document.querySelectorAll('#review-container').forEach(cont => {
-                let arr = []
-                item.attributes.reviews.forEach(r => {
-                    // arr.push(r.content)
-                    // debugger
-                })
-                // I need to attach the reviews and items by id
-                // but how can I associate them on the page
-                // I need to attach the review to the item id
-                // but how? 
+            document.querySelectorAll('#item-container').forEach(cont => {
+                let reviewsArr = item.attributes.reviews.map(r => r);
+                let filteredReviewsArr = reviewsArr.filter(r => r.item_id === parseInt(item.id))
+                // debugger
+                // how do i access the item id
+                // how do i acccess item-1
+                // item = 'item-1'
+                // document.querySelector(#item-${item.id})
+                // parseInt(item.split('').pop())
+
+                // how do i put only the review that belongs to the item into that item's review container?
+
+                
                 // I'm thinking I can create a div with an item-id and attach the review to that id
-                cont.innerHTML += `
+                // Make some kind of conditonal where if the item-id is equal to the reviews.item_id then the
+                    // reviews.content will be added to the inner html of the #revied-container 
+
+                    // if item-id equals reviews.item_id
+                        // add reviews.content to cont.innerHTML
+                    // end
+
+                    // filteredReviewsArray = reviewsArray.filter( r => r.item_id === item-id )
+                    // returns [review, review, review]
+                    // cont.innerHtml += filteredReviewsArray.join() <br>
+
+
+
+                cont.getElementsByClassName('container')[cont.getElementsByClassName('container').length - 1].innerHTML += `
                 <div class="album py-5 bg-light">
                     <div class="col-md-4">
-                        ${arr.join()}
+                        ${filteredReviewsArr.map(r => r.content).join()}<br>
                     </div>
                     <br>
                 </div>    
