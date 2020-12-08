@@ -55,7 +55,7 @@ function getRequestForItems() {
                 cont.getElementsByClassName('container')[cont.getElementsByClassName('container').length - 1].innerHTML += `
                 <div class="album py-5 bg-light">
                     <div class="col-md-4">
-                        ${filteredReviewsArr.map(r => r.content).join()}<br>
+                        ${filteredReviewsArr.map(r => r.content).join('<br>')}
                     </div>
                     <br>
                 </div>    
