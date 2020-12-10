@@ -52,7 +52,7 @@ class Item {
                             <div class="card card-body">
                                 <form id="create-review-form">
                                     <div class="form-group">
-                                        <label for="content">Write a Review... </label>
+                                        <label for="content">Write a Review...</label>
                                         <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
                                     </div>
                                     <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
@@ -81,49 +81,24 @@ class Item {
         // <br><br>`;
     }
 
-    renderReviewCard(item) {
-        let arr = []
-        item.attributes.reviews.forEach(r => {
-            arr.push(r.content)
+
+    reviewForm() {
+        const reviewSubmits = document.querySelectorAll("#review-submit");
+        reviewSubmits.forEach(rs => {
+            rs.addEventListener("submit", (e) => {
+                e.preventDefault
+                console.log()
+            })
         })
 
-        return `
-            <div class="col-md-4">
-                ${arr.join()}
-            </div>
-            <br>
-        `
-    }
-
-    // reviewForm() {
-        // this.itemReviewsFetch()
-
-        // const createReviewForm = document.querySelector("#create-review-form");
-        // createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
-
         // console.log(createReviewForm)
-    // }
-
-    // itemReviewsFetch() {
-        // const itemsApi = "http://localhost:3000/api/v1/items"
-        
-        // fetch(itemsApi)
-        // .then(response => response.json())
-        // .then(items => {
-        //     items.data.forEach(item => {
-        //         let arr = []
-        //         item.attributes.reviews.forEach(r => {
-        //             arr.push(r.content)
-        //         })
-        //         document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`
-        //     })
-        // })
-    // }
+    }
 
     createReviewFormHandler(e) {
         e.preventDefault()
-        const contentInput = document.querySelector("input-content").value;
-        this.reviewPostFetch = (contentInput);
+        console.log(e)
+        // const contentInput = document.querySelector("input-content").value;
+        // this.reviewPostFetch = (contentInput);
     }
 
 
