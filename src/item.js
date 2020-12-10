@@ -82,16 +82,10 @@ class Item {
     }
 
 
-    reviewForm() {
-        const reviewSubmits = document.querySelectorAll("#review-submit");
-        reviewSubmits.forEach(rs => {
-            rs.addEventListener("submit", (e) => {
-                e.preventDefault
-                console.log()
-            })
+    clickEvent() {
+        document.querySelectorAll('#review-submit').forEach(rs => {
+            rs.addEventListener("click", e => this.createReviewFormHandler(e))
         })
-
-        // console.log(createReviewForm)
     }
 
     createReviewFormHandler(e) {
