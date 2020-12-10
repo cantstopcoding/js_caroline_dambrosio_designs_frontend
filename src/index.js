@@ -44,8 +44,15 @@ function getRequestForItems() {
                 </div>    
                 ` 
             })
-            
-            newItem.clickEvent()
+            document.querySelectorAll('#review-submit').forEach(rs => {
+                rs.addEventListener("click", e => reviewFormHandler(e))
+            })
+
+            function reviewFormHandler(e) {
+                e.preventDefault()
+                console.log(e)
+            }
+            // newItem.reviewForm()
         });
     });
 }

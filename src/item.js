@@ -82,18 +82,18 @@ class Item {
     }
 
 
-    clickEvent() {
-        document.querySelectorAll('#review-submit').forEach(rs => {
-            rs.addEventListener("click", e => this.createReviewFormHandler(e))
-        })
-    }
+    // clickEvent() {
+    //     document.querySelectorAll('#review-submit').forEach(rs => {
+    //         rs.addEventListener("click", e => this.createReviewFormHandler(e))
+    //     })
+    // }
 
-    createReviewFormHandler(e) {
-        e.preventDefault()
-        console.log(e)
-        // const contentInput = document.querySelector("input-content").value;
-        // this.reviewPostFetch = (contentInput);
-    }
+    // createReviewFormHandler(e) {
+    //     e.preventDefault()
+    //     console.log(e)
+    //     // const contentInput = document.querySelector("input-content").value;
+    //     // this.reviewPostFetch = (contentInput);
+    // }
 
 
 }
