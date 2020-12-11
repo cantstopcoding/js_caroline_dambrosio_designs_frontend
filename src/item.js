@@ -53,7 +53,7 @@ class Item {
                                 <form id="create-review-form">
                                     <div class="form-group">
                                         <label for="content">Write a Review...</label>
-                                        <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
+                                        <textarea class="form-control" id="input-content" name="content" value="" rows="3"></textarea>
                                     </div>
                                     <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
                                 </form>

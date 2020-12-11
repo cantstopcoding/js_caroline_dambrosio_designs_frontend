@@ -50,8 +50,25 @@ function getRequestForItems() {
 
             function reviewFormHandler(e) {
                 e.preventDefault()
-                console.log(e)
+                const contentInput = document.querySelector("#input-content").value;
+                reviewPostFetch(contentInput);
             }
+
+            //  function reviewPostFetch(content) {
+            //     const bodyData = {content}
+                
+            //     fetch(itemsApi, {
+            //         method: "POST",
+            //         headers: {"Content-Type": "application/json"},
+            //         body: JSON.stringify(bodyData)
+            //     })
+            //     .then(response => response.json())
+            //     .then(item => {
+            //         const itemData = item.data;
+            //         let newItem = new Item(itemData, itemData.attributes);
+            //         document.querySelector('#review-container').innerHTML += newItem.renderReview()
+            //  });
+
             // newItem.reviewForm()
         });
     });
@@ -139,18 +156,5 @@ function postFetch(name, price, description, image_url, category_id) {
 }
 
 
-// function reviewPostFetch(content) {
-//     const bodyData = {content}
-    
-//     fetch(itemsApi, {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(bodyData)
-//     })
-//     .then(response => response.json())
-//     .then(item => {
-//         const itemData = item.data;
-//         let newItem = new Item(itemData, itemData.attributes);
-//         document.querySelector('#review-container').innerHTML += newItem.renderReview()
-//     });
+
 
