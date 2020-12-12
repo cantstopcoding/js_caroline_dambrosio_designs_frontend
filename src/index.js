@@ -1,4 +1,5 @@
 const itemsApi = "http://localhost:3000/api/v1/items"
+const reviewsApi = "http://localhost:3000/api/v1/reviews"
 const loginApi = "http://localhost:3000/api/v1/login"
 const profileApi = "http://localhost:3000/api/v1/profile"
 
@@ -51,27 +52,28 @@ function getRequestForItems() {
             function reviewFormHandler(e) {
                 e.preventDefault()
                 const contentInput = document.querySelector("#input-content").value;
-                reviewPostFetch(contentInput);
+                reviewPostFetch(contentInput, item.id);
             }
-
-            //  function reviewPostFetch(content) {
-            //     const bodyData = {content}
-                
-            //     fetch(itemsApi, {
-            //         method: "POST",
-            //         headers: {"Content-Type": "application/json"},
-            //         body: JSON.stringify(bodyData)
-            //     })
-            //     .then(response => response.json())
-            //     .then(item => {
-            //         const itemData = item.data;
-            //         let newItem = new Item(itemData, itemData.attributes);
-            //         document.querySelector('#review-container').innerHTML += newItem.renderReview()
-            //  });
 
             // newItem.reviewForm()
         });
     });
+}
+
+function reviewPostFetch(content, item_id) {
+    const bodyData = {content, item_id}
+    fetch(reviewsApi, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })          
+    .then(response => response.json())
+    .then(review => {
+        const reviewData = review.data;
+        debugger
+        let newReview = new Review(reviewData, reviewData.attributes);
+        document.querySelector('#review-container').innerHTML += newReview.renderReviewContent()
+    })
 }
 
 // debugger
