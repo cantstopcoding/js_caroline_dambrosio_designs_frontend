@@ -1,6 +1,8 @@
 class Review {
-    constructor(content) {
-        
+    constructor(reviewData, reviewAttributes) {
+        this.id = reviewData.id
+        this.content = reviewAttributes.content
+        this.itemId = reviewAttributes.item_id
     }
     
     renderReviewContent() {
@@ -9,3 +11,5 @@ class Review {
         `
     }
 }
+
+Item.all = [];
