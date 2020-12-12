@@ -3,6 +3,7 @@ class Review {
         this.id = reviewData.id
         this.content = reviewAttributes.content
         this.itemId = reviewAttributes.item_id
+        Review.all.push(this)
     }
     
     renderReviewContent() {
@@ -12,4 +13,4 @@ class Review {
     }
 }
 
-Item.all = [];
+Review.all = [];
