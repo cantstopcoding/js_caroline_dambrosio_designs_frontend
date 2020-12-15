@@ -44,18 +44,29 @@ function getRequestForItems() {
                     <br>
                 </div>    
                 ` 
+                const reviewButton = document.createElement('button')
+                reviewButton.setAttribute('data-item-id', `${item.id}`)
+                reviewButton.setAttribute('class', 'btn btn-sm btn-outline-secondary')
+                reviewButton.setAttribute('type', 'submit')
+                reviewButton.setAttribute('value', "Submit")
+
+                document.querySelectorAll('#review-submit').forEach(rs => {
+                    rs.addEventListener("click", e => {
+                        // is there something i can do to not have the item end up in in item 3?
+                        reviewFormHandler(e)
+                    })
+                })
             })
-            document.querySelectorAll('#review-submit').forEach(rs => {
-                rs.addEventListener("click", e => reviewFormHandler(e))
-            })
+
 
             function reviewFormHandler(e) {
                 e.preventDefault()
+                console.log(e)
                 const contentInput = document.querySelector("#input-content").value;
                 reviewPostFetch(contentInput, item.id);
             }
 
-            // newItem.reviewForm()
+            // i have to match the review input to the item id the review should be rendered to the correct item
         });
     });
 }
@@ -70,13 +81,10 @@ function reviewPostFetch(content, item_id) {
     .then(response => response.json())
     .then(review => {
         const reviewData = review.data;
-        debugger
         let newReview = new Review(reviewData, reviewData.attributes);
         document.querySelector('#review-container').innerHTML += newReview.renderReviewContent()
     })
 }
-
-// debugger
 // reviewSubmit.addEventListener("submit", (e) => {
 //     e.preventDefault()
 //     console.log(e)
