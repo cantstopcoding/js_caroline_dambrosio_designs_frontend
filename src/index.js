@@ -44,26 +44,59 @@ function getRequestForItems() {
                     <br>
                 </div>    
                 ` 
+
+                const reviewForm = document.createElement('form')
+                reviewForm.setAttribute('data-review-form-id', `${item.id}`)
+                
+                // const formGroup = document.createElement('div')  
+                // formGroup.setAttribute('class', 'form-group')
+                
+                // const contentLabel = document.createElement('label')
+                // contentLabel.setAttribute('for', 'content')
+                // contentLabel.innerHTML = "Write a Review..."
+
+                // const reviewInput = document.createElement('textarea')
+                // reviewInput.setAttribute('class', 'form-control')
+                // reviewInput.setAttribute('id', 'input-content')
+                // reviewInput.setAttribute('name', 'content')
+                // reviewInput.setAttribute('value', "")
+                // reviewInput.setAttribute('rows', '3')
+
+                // // <textarea class="form-control" id="input-content" name="content" value="" rows="3"></textarea>
+                
                 const reviewButton = document.createElement('button')
-                reviewButton.setAttribute('data-item-id', `${item.id}`)
+                reviewButton.setAttribute('data-button-id', `${item.id}`)
                 reviewButton.setAttribute('class', 'btn btn-sm btn-outline-secondary')
                 reviewButton.setAttribute('type', 'submit')
                 reviewButton.setAttribute('value', "Submit")
+                reviewButton.innerHTML = "Submit"
 
-                document.querySelectorAll('#review-submit').forEach(rs => {
-                    rs.addEventListener("click", e => {
-                        // is there something i can do to not have the item end up in in item 3?
-                        reviewFormHandler(e)
-                    })
+                // const reviewCardBody = document.querySelector('.card.card-body')
+                
+                // formGroup.appendChild(contentLabel)
+                // formGroup.appendChild(reviewInput)
+                // reviewForm.appendChild(formGroup)
+                reviewForm.appendChild(reviewButton)
+                // reviewCardBody.appendChild(reviewForm)
+
+                reviewButton.addEventListener("click", e => {
+                    e.preventDefault()
+                    console.log(e)
                 })
+
+                document.querySelectorAll(".card.card-body").forEach(cb => {
+                    cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1].addEventListener("click", e => {
+                            reviewFormHandler(e)
+                        })
+                    })
             })
 
 
             function reviewFormHandler(e) {
                 e.preventDefault()
                 console.log(e)
-                const contentInput = document.querySelector("#input-content").value;
-                reviewPostFetch(contentInput, item.id);
+                const contentInput = document.querySelector(`#input-${e.target.dataset.itemId}`).value
+                reviewPostFetch(contentInput, e.target.dataset.itemId);
             }
 
             // i have to match the review input to the item id the review should be rendered to the correct item
@@ -82,7 +115,7 @@ function reviewPostFetch(content, item_id) {
     .then(review => {
         const reviewData = review.data;
         let newReview = new Review(reviewData, reviewData.attributes);
-        document.querySelector('#review-container').innerHTML += newReview.renderReviewContent()
+        document.querySelector(`#review-container-${newReview.itemId}`).innerHTML += newReview.renderReviewContent()
     })
 }
 // reviewSubmit.addEventListener("submit", (e) => {

@@ -8,7 +8,7 @@ class Review {
     
     renderReviewContent() {
         return `
-
+            ${this.content}<br>
         `
     }
 }
