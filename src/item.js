@@ -55,7 +55,7 @@ class Item {
                                         <label for="content">Write a Review...</label>
                                         <textarea class="form-control" id="input-content" name="content" value="" rows="3"></textarea>
                                     </div>
-                                    <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
+                                    <button data-item-id="${this.id}" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
                                 </form>
                                 <div class="container" id="review-container">
                                     
@@ -79,6 +79,14 @@ class Item {
         //     <button data-id=${this.id}>edit</button>
         // </div>
         // <br><br>`;
+    }
+
+    renderReviewContent() {
+        return `
+            <div>
+                ${this.reviews}
+            </div>
+        `
     }
 
 
