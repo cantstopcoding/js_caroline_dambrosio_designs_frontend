@@ -14,14 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
    
     const loginForm = document.querySelector("#login-form");
     loginForm.addEventListener("submit", (e) => loginFormHandler(e));
-
-    // let reviewSubmits = document.querySelectorAll('#review-submit')
-    //     reviewSubmits.forEach(rs => {
-    //         rs.addEventListener("submit", (e) => {
-    //         e.preventDefault()
-    //         console.log(e)
-    //     })
-    // })
 });
 
 function getRequestForItems() {
@@ -35,15 +27,51 @@ function getRequestForItems() {
             document.querySelectorAll('#item-container').forEach(cont => {
                 let reviewsArr = item.attributes.reviews.map(r => r);
                 let filteredReviewsArr = reviewsArr.filter(r => r.item_id === parseInt(item.id))
+                
+                // let reviewContainer = cont.getElementsByClassName('container')[cont.getElementsByClassName('container').length - 1]
+                
+                // const borderEl = document.createElement('div')
+                // borderEl.setAttribute('class', 'card border-dark mb-3')
+                
+                // const cardHeader = document.createElement('div');
+                // cardHeader.setAttribute('class', 'card-header')
+                // cardHeader.innerHTML = "Review Posted..."
 
+                // textDark = document.createElement('div');
+                // textDark.setAttribute('class', 'card-body text-dark')
+                
+                // cardContent = document.createElement('h6');
+                // cardContent.setAttribute('class', 'card-title')
+
+                // reviewContainer.appendChild(borderEl)
+                // borderEl.appendChild(cardHeader)
+                // borderEl.appendChild(textDark)
+                // textDark.appendChild(cardContent)
+
+
+            // <div class="card border-dark mb-3" style="max-width: 18rem;">
+            //     <div class="card-header">Review Posted...</div>
+            //     <div class="card-body text-dark">
+            //         <h6 class="card-title">${r.content}</h6>
+            //         <p class="card-text"></p>
+            //     </div>
+            // </div>
+
+            // I need to somehow go to each review and make it a card and attach it to the container
+
+                debugger
                 cont.getElementsByClassName('container')[cont.getElementsByClassName('container').length - 1].innerHTML += `
-                <div class="album py-5 bg-light">
-                    <div class="col-md-4">
-                        ${filteredReviewsArr.map(r => r.content).join('<br>')}
-                    </div>
+                    ${filteredReviewsArr.map(r => `
                     <br>
-                </div>    
-                ` 
+                    <div class="card border-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header">Review Posted...</div>
+                        <div class="card-body text-dark">
+                            <h6 class="card-title">${r.content}</h6>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                    `).join('<br>')}
+                `   
 
                 const reviewForm = document.createElement('form')
                 reviewForm.setAttribute('data-review-form-id', `${item.id}`)
@@ -197,7 +225,3 @@ function postFetch(name, price, description, image_url, category_id) {
         document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
     });
 }
-
-
-
-
