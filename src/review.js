@@ -7,9 +7,6 @@ class Review {
     }
     
     renderReviewContent() {
-        // return `
-        //     ${this.content}<br>
-        // `
         return `
         <div class="card border-dark mb-3" style="max-width: 18rem;">
             <div class="card-header">Review Posted...</div>
