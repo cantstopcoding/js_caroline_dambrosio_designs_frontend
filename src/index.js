@@ -41,24 +41,6 @@ function getRequestForItems() {
                     `).join('')}
                 `   
 
-                // const reviewForm = document.createElement('form')
-                // reviewForm.setAttribute('data-review-form-id', `${item.id}`)
-                
-                
-                // const reviewButton = document.createElement('button')
-                // reviewButton.setAttribute('data-button-id', `${item.id}`)
-                // reviewButton.setAttribute('class', 'btn btn-sm btn-outline-secondary')
-                // reviewButton.setAttribute('type', 'submit')
-                // reviewButton.setAttribute('value', "Submit")
-                // reviewButton.innerHTML = "Submit"
-
-                // reviewForm.appendChild(reviewButton)
-
-                // reviewButton.addEventListener("click", e => {
-                //     e.preventDefault()
-                //     console.log(e)
-                // })
-
                 document.querySelectorAll(".card.card-body").forEach(cb => {
                     cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1].addEventListener("click", e => {    
                         reviewFormHandler(e)
@@ -67,23 +49,16 @@ function getRequestForItems() {
             })
 
 
-            function reviewFormHandler(e) {
-                e.preventDefault()
-                console.log(e)
-                const contentInput = document.querySelector(`#input-${e.target.dataset.itemId}`).value
-                reviewPostFetch(contentInput, e.target.dataset.itemId);
-                
-                // document.addEventListener( "click", e => buttonHeard(e) );
-
-                // function buttonHeard(e) {
-                //     let element = e.target 
-                //     if(element.tagName == 'BUTTON' && element.classList.contains("btn-outline-secondary")){
-                //         console.log("clicked");
-                //     }
-                // }                                                                                     
-            }
+            
         });
     });
+}
+
+function reviewFormHandler(e) {
+    e.preventDefault()
+    console.log(e)
+    const contentInput = document.querySelector(`#input-${e.target.dataset.itemId}`).value
+    reviewPostFetch(contentInput, e.target.dataset.itemId);                                                                                    
 }
 
 function reviewPostFetch(content, item_id) {
@@ -127,8 +102,7 @@ function postFetch(name, price, description, image_url, category_id) {
         // can i add event listener once new item is appended to dom
         document.querySelector('#item-container').getElementsByTagName('button')[document.querySelector('#item-container').getElementsByTagName('button').length - 1]
         .addEventListener("click", e => {
-            e.preventDefault()
-            console.log(e)
+            reviewFormHandler(e)
         })
     });
 
