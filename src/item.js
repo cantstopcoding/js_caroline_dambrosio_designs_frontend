@@ -42,9 +42,12 @@ class Item {
                                 <small class="text-muted">Category: ${this.category.name}</small>
                             </div>
                         </div>
-
-                        
-                        
+                        <p>	                        
+                            <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample-${this.id}" aria-expanded="false" aria-controls="collapseExample-${this.id}">	                        
+                                Reviews	
+                            </button>	
+                        </p>
+                        <div class="collapse" id="collapseExample-${this.id}">
                             <div class="card card-body">
                                 <form id="create-review-form">
                                     <div class="form-group">
@@ -57,6 +60,7 @@ class Item {
                                     
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
