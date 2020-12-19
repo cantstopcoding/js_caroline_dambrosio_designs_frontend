@@ -25,8 +25,9 @@ function getRequestForItems() {
             document.querySelectorAll('#item-container').forEach(cont => {
                 let reviewsArr = item.attributes.reviews.map(r => r);
                 let filteredReviewsArr = reviewsArr.filter(r => r.item_id === parseInt(item.id))
-
-                cont.getElementsByClassName('container')[cont.getElementsByClassName('container').length - 1].innerHTML += `
+                const reviewContainer = cont.getElementsByClassName('container')[cont.getElementsByClassName('container').length - 1]
+                
+                reviewContainer.innerHTML += `
                     ${filteredReviewsArr.map(r => `
                     <br>
                     <div class="card border-dark mb-3" style="max-width: 18rem;">
