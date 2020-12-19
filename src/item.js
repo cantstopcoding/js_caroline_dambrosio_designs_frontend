@@ -11,18 +11,6 @@ class Item {
         console.log(this)
     }
 
-    // getRequestForItems() {
-    //     fetch(itemsApi)
-    //     .then(response => response.json())
-    //     .then(items => {
-    //         items.data.forEach(item => {
-    //             let newItem = new this(item, item.attributes);
-    //             document.querySelector('#item-container').innerHTML += this.renderItemCard()
-    //             newItem.reviewForm()
-    //         });
-    //     });
-    // }
-
     renderItemCard() {
         // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
         return `
@@ -65,26 +53,6 @@ class Item {
                 </div>
             </div>
         `
-
-        // <p>
-        //     <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        //         Reviews
-        //     </button>
-        // </p>
-
-        // <div class="collapse" id="collapseExample">
-        // </div>
-        
-        // return `
-        // <div data-id=${this.id}>
-        //     <img src=${this.image_url} height="200" width="250">
-        //     <h3>${this.name}</h3>
-        //     <h3>$${this.price}</h3>
-        //     <h3>${this.description}</h3>
-        //     <p>${this.category.name}</p>
-        //     <button data-id=${this.id}>edit</button>
-        // </div>
-        // <br><br>`;
     }
 
     Content() {
