@@ -1,8 +1,4 @@
-const itemsApi = "http://localhost:3000/api/v1/items"
-const reviewsApi = "http://localhost:3000/api/v1/reviews"
-const loginApi = "http://localhost:3000/api/v1/login"
-const profileApi = "http://localhost:3000/api/v1/profile"
-
+const api = new API 
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM is loaded!')
@@ -20,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getRequestForItems() {
-    fetch(itemsApi)
+    fetch(api.itemsApi())
     .then(response => response.json())
     .then(items => {
         items.data.forEach(item => {
@@ -68,7 +64,7 @@ function reviewFormHandler(e) {
 
 function reviewPostFetch(content, item_id) {
     const bodyData = {content, item_id}
-    fetch(reviewsApi, {
+    fetch(api.reviewsApi(), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
@@ -94,7 +90,7 @@ function createFormHandler(e) {
 function postFetch(name, price, description, image_url, category_id) {
     const bodyData = {name, price, description, image_url, category_id}
     
-    fetch(itemsApi, {
+    fetch(api.itemsApi(), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
