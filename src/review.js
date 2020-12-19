@@ -8,6 +8,7 @@ class Review {
     
     renderReviewContent() {
         return `
+        <br>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
             <div class="card-header">Review Posted...</div>
             <div class="card-body text-dark">
