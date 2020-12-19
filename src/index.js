@@ -61,7 +61,10 @@ function reviewFormHandler(e) {
     e.preventDefault()
     console.log(e)
     const contentInput = document.querySelector(`#input-${e.target.dataset.itemId}`).value
-    reviewPostFetch(contentInput, e.target.dataset.itemId);                                                                                    
+    reviewPostFetch(contentInput, e.target.dataset.itemId); 
+    
+    const valueAfterSubmit = document.querySelector(`#input-${e.target.dataset.itemId}`).value = ""
+    document.querySelector(`#input-${e.target.dataset.itemId}`).value = ""                                                                             
 }
 
 function reviewPostFetch(content, item_id) {
