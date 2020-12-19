@@ -1,6 +1,4 @@
-const api = new API 
-
-document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM is loaded!')
     getRequestForItems()
 
@@ -16,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getRequestForItems() {
+    const api = new API
     fetch(api.itemsApi())
     .then(response => response.json())
     .then(items => {
@@ -64,6 +63,7 @@ function reviewFormHandler(e) {
 
 function reviewPostFetch(content, item_id) {
     const bodyData = {content, item_id}
+    const api = new API
     fetch(api.reviewsApi(), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -89,7 +89,7 @@ function createFormHandler(e) {
 
 function postFetch(name, price, description, image_url, category_id) {
     const bodyData = {name, price, description, image_url, category_id}
-    
+    const api = new API
     fetch(api.itemsApi(), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
