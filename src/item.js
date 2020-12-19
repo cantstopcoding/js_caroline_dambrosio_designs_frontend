@@ -42,22 +42,21 @@ class Item {
                                 <small class="text-muted">Category: ${this.category.name}</small>
                             </div>
                         </div>
-
-                        <p>
-                            <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Reviews
-                            </button>
+                        <p>	                        
+                            <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample-${this.id}" aria-expanded="false" aria-controls="collapseExample-${this.id}">	                        
+                                Reviews	
+                            </button>	
                         </p>
-                        <div class="collapse" id="collapseExample">
+                        <div class="collapse" id="collapseExample-${this.id}">
                             <div class="card card-body">
                                 <form id="create-review-form">
                                     <div class="form-group">
-                                        <label for="content">Write a Review... </label>
-                                        <textarea class="form-control" id="input-content" name="content" rows="3"></textarea>
+                                        <label for="content">Write a Review...</label>
+                                        <textarea class="form-control" id="input-${this.id}" name="content" value="" rows="3"></textarea>
                                     </div>
-                                    <button id="review-submit" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
+                                    <button data-item-id="${this.id}" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
                                 </form>
-                                <div class="container" id="review-container">
+                                <div class="container" id="review-container-${this.id}">
                                     
                                 </div>
                             </div>
@@ -67,7 +66,14 @@ class Item {
             </div>
         `
 
-        
+        // <p>
+        //     <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        //         Reviews
+        //     </button>
+        // </p>
+
+        // <div class="collapse" id="collapseExample">
+        // </div>
         
         // return `
         // <div data-id=${this.id}>
@@ -81,52 +87,13 @@ class Item {
         // <br><br>`;
     }
 
-    renderReviewCard(item) {
-        let arr = []
-        item.attributes.reviews.forEach(r => {
-            arr.push(r.content)
-        })
-
+    Content() {
         return `
-            <div class="col-md-4">
-                ${arr.join()}
+            <div>
+                ${this.reviews}
             </div>
-            <br>
         `
     }
-
-    // reviewForm() {
-        // this.itemReviewsFetch()
-
-        // const createReviewForm = document.querySelector("#create-review-form");
-        // createReviewForm.addEventListener("submit", (e) => {this.createReviewFormHandler(e)});
-
-        // console.log(createReviewForm)
-    // }
-
-    // itemReviewsFetch() {
-        // const itemsApi = "http://localhost:3000/api/v1/items"
-        
-        // fetch(itemsApi)
-        // .then(response => response.json())
-        // .then(items => {
-        //     items.data.forEach(item => {
-        //         let arr = []
-        //         item.attributes.reviews.forEach(r => {
-        //             arr.push(r.content)
-        //         })
-        //         document.querySelector('#review-container').innerHTML += `${arr.join()}<br>`
-        //     })
-        // })
-    // }
-
-    createReviewFormHandler(e) {
-        e.preventDefault()
-        const contentInput = document.querySelector("input-content").value;
-        this.reviewPostFetch = (contentInput);
-    }
-
-
 }
 
 Item.all = [];
