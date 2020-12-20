@@ -102,9 +102,10 @@ function postFetch(name, price, description, image_url, category_id) {
         let newItem = new Item(itemData, itemData.attributes);
         document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
         // can i add event listener once new item is appended to dom
-        document.querySelector('#item-container').getElementsByTagName('button')[document.querySelector('#item-container').getElementsByTagName('button').length - 1]
-        .addEventListener("click", e => {
-            reviewFormHandler(e)
+        document.querySelectorAll(".card.card-body").forEach(cb => {
+            cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1].addEventListener("click", e => {    
+                reviewFormHandler(e)
+            })
         })
     });
 
