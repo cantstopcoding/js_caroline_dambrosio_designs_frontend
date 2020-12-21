@@ -54,6 +54,16 @@ class Item {
             </div>
         `
     }
+
+    clickEventForAllReviews() {
+        document.querySelectorAll(".card.card-body").forEach(cb => {
+            const reviewSubmitButton = cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1]
+            
+            reviewSubmitButton.addEventListener("click", e => {    
+                reviewFormHandler(e)
+            })
+        })
+    } 
 }
 
 Item.all = [];

@@ -40,7 +40,7 @@ function getRequestForItems() {
                     `).join('')}
                 `   
 
-                reviewSubmitEvent()
+                newItem.clickEventForAllReviews()
             })
         });
     });
@@ -83,8 +83,8 @@ function createFormHandler(e) {
 
 function postFetch(name, price, description, image_url, category_id) {
     const bodyData = {name, price, description, image_url, category_id}
-    const api = new API
-    fetch(api.itemsApi(), {
+    const itemsApi = new API
+    fetch(itemsApi.itemsUrl(), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
@@ -95,19 +95,9 @@ function postFetch(name, price, description, image_url, category_id) {
         let newItem = new Item(itemData, itemData.attributes);
         document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
         // can i add event listener once new item is appended to dom
-        reviewSubmitEvent()
+        newItem.clickEventForAllReviews()
     });
 }
-
-function reviewSubmitEvent() {
-    document.querySelectorAll(".card.card-body").forEach(cb => {
-        const reviewSubmitButton = cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1]
-        
-        reviewSubmitButton.addEventListener("click", e => {    
-            reviewFormHandler(e)
-        })
-    })
-} 
 
 
 // function loginFormHandler(e) {
