@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getRequestForItems() {
-    const api = new API
-    fetch(api.itemsApi())
+    const itemsApi = new API
+    fetch(itemsApi.itemsUrl())
     .then(response => response.json())
     .then(items => {
         items.data.forEach(item => {
@@ -57,8 +57,8 @@ function reviewFormHandler(e) {
 
 function reviewPostFetch(content, item_id) {
     const bodyData = {content, item_id}
-    const api = new API
-    fetch(api.reviewsApi(), {
+    const reviewsApi = new API
+    fetch(reviewsApi.reviewsUrl(), {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(bodyData)
