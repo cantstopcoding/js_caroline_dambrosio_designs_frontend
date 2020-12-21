@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const createItemForm = document.querySelector("#create-item-form");
     createItemForm.addEventListener("submit", (e) => {
-        createFormHandler(e)
+        itemFormHandler(e)
         createItemForm.reset()
     });
     
@@ -71,7 +71,7 @@ function reviewPostFetch(content, item_id) {
     })
 }
 
-function createFormHandler(e) {
+function itemFormHandler(e) {
     e.preventDefault();
     const nameInput = document.querySelector("#input-name").value;
     const priceInput = document.querySelector("#input-price").value;
