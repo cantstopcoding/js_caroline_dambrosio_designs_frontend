@@ -54,14 +54,6 @@ class Item {
             </div>
         `
     }
-
-    Content() {
-        return `
-            <div>
-                ${this.reviews}
-            </div>
-        `
-    }
 }
 
 Item.all = [];

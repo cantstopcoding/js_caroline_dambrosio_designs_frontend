@@ -19,8 +19,6 @@ class Review {
         </div>
         `
     }
-        
-
 }
 
 Review.all = [];

@@ -41,14 +41,13 @@ function getRequestForItems() {
                 `   
 
                 document.querySelectorAll(".card.card-body").forEach(cb => {
-                    cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1].addEventListener("click", e => {    
+                    const reviewSubmitButton = cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1]
+                    
+                    reviewSubmitButton.addEventListener("click", e => {    
                         reviewFormHandler(e)
                     })
                 })
             })
-
-
-            
         });
     });
 }
@@ -103,46 +102,57 @@ function postFetch(name, price, description, image_url, category_id) {
         document.querySelector('#item-container').innerHTML += newItem.renderItemCard()
         // can i add event listener once new item is appended to dom
         document.querySelectorAll(".card.card-body").forEach(cb => {
-            cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1].addEventListener("click", e => {    
+            const reviewSubmitButton = cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1]
+            
+            reviewSubmitButton.addEventListener("click", e => {    
                 reviewFormHandler(e)
             })
         })
     });
 
-    function loginFormHandler(e) {
-        e.preventDefault();
-        const emailInput = e.target.querySelector('#login-email').value
-        const passwordInput = e.target.querySelector('#login-password').value
-        loginFetch(emailInput, passwordInput)
-    }
-    
-    function loginFetch(email, password) {
-        const bodyData = {user: { email, password }}
-    
-        fetch(loginApi, {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(bodyData)
-        })
-        .then(response => response.json())
-        .then(json => {
-            localStorage.setItem('token', json.jwt)
-            renderUserProfile()
-        })
-    }
-    
-    function renderUserProfile() {
-        console.log(localStorage.getItem('token'));
-        fetch(profileApi, {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-        .then(response => response.json())
-        .then(json => {
-          alert(`Hi ${json.user.data.attributes.first_name}!`)
+    function listenToReviewButtonClick() {
+        document.querySelectorAll(".card.card-body").forEach(cb => {
+            cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1].addEventListener("click", e => {    
+                reviewFormHandler(e)
+            })
         })
     }
 }
+
+
+// function loginFormHandler(e) {
+//     e.preventDefault();
+//     const emailInput = e.target.querySelector('#login-email').value
+//     const passwordInput = e.target.querySelector('#login-password').value
+//     loginFetch(emailInput, passwordInput)
+// }
+
+// function loginFetch(email, password) {
+//     const bodyData = {user: { email, password }}
+
+//     fetch(loginApi, {
+//         method: "POST",
+//         headers: {"Content-Type": "application/json"},
+//         body: JSON.stringify(bodyData)
+//     })
+//     .then(response => response.json())
+//     .then(json => {
+//         localStorage.setItem('token', json.jwt)
+//         renderUserProfile()
+//     })
+// }
+
+// function renderUserProfile() {
+//     console.log(localStorage.getItem('token'));
+//     fetch(profileApi, {
+//       method: 'GET',
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('token')}`
+//       }
+//     })
+//     .then(response => response.json())
+//     .then(json => {
+//       alert(`Hi ${json.user.data.attributes.first_name}!`)
+//     })
+// }
 
