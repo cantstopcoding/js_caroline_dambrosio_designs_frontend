@@ -59,7 +59,7 @@ function reviewPostFetch(content, item_id) {
     .then(response => response.json())
     .then(review => {
         const reviewData = review.data;
-        let newReview = new Review(reviewData, reviewData.attributes);
+        let newReview = new Review(review.data.attributes.item, review.data.attributes.item, reviewData, reviewData.attributes);
         document.querySelector(`#review-container-${newReview.itemId}`).innerHTML += newReview.renderReviewContent(newReview)
     })
 }
@@ -91,7 +91,6 @@ function itemPostFetch(name, price, description, image_url, category_id) {
         newItem.clickEventForAllReviews()
     });
 }
-
 
 // function loginFormHandler(e) {
 //     e.preventDefault();

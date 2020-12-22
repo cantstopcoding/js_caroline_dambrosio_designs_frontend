@@ -6,7 +6,6 @@ class Item {
         this.description = itemAttributes.description
         this.image_url = itemAttributes.image_url
         this.category = itemAttributes.category
-        this.reviews = itemAttributes.reviews.content //.map(review => review.content).join(' ')
         Item.all.push(this)
         console.log(this)
     }
@@ -66,6 +65,7 @@ class Item {
     }
     
     renderReviewContent(review) {
+
         return `
         <br>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
