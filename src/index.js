@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
    
-    const loginForm = document.querySelector("#login-form");
-    loginForm.addEventListener("submit", (e) => loginFormHandler(e));
+    // const loginForm = document.querySelector("#login-form");
+    // loginForm.addEventListener("submit", (e) => loginFormHandler(e));
 });
 
 function getRequestForItems() {
