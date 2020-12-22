@@ -29,14 +29,7 @@ function getRequestForItems() {
                 
                 reviewContainer.innerHTML += `
                     ${filteredReviewsArr.map(r => `
-                    <br>
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header">Review Posted ${r.created_at}</div>
-                        <div class="card-body text-dark">
-                            <h6 class="card-title">${r.content}</h6>
-                            <p class="card-text"></p>
-                        </div>
-                    </div>
+                    ${newItem.renderReviewContent(r)}
                     `).join('')}
                 `   
 
