@@ -7,13 +7,13 @@ class Review {
         Review.all.push(this)
     }
     
-    renderReviewContent() {
+    renderReviewContent(review) {
         return `
         <br>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
-            <div class="card-header">Review Posted ${this.createdAt}</div>
+            <div class="card-header">Review Posted ${review.createdAt}</div>
             <div class="card-body text-dark">
-                <h6 class="card-title">${this.content}</h6>
+                <h6 class="card-title">${review.content}</h6>
                 <p class="card-text"></p>
             </div>
         </div>

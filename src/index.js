@@ -60,7 +60,7 @@ function reviewPostFetch(content, item_id) {
     .then(review => {
         const reviewData = review.data;
         let newReview = new Review(reviewData, reviewData.attributes);
-        document.querySelector(`#review-container-${newReview.itemId}`).innerHTML += newReview.renderReviewContent()
+        document.querySelector(`#review-container-${newReview.itemId}`).innerHTML += newReview.renderReviewContent(newReview)
     })
 }
 
