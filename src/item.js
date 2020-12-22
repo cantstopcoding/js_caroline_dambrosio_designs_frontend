@@ -6,7 +6,6 @@ class Item {
         this.description = itemAttributes.description
         this.image_url = itemAttributes.image_url
         this.category = itemAttributes.category
-        this.reviews = itemAttributes.reviews.content //.map(review => review.content).join(' ')
         Item.all.push(this)
         console.log(this)
     }
@@ -55,11 +54,27 @@ class Item {
         `
     }
 
-    Content() {
+    clickEventForAllReviews() {
+        document.querySelectorAll(".card.card-body").forEach(cb => {
+            const reviewSubmitButton = cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1]
+            
+            reviewSubmitButton.addEventListener("click", e => {    
+                reviewFormHandler(e)
+            })
+        })
+    }
+    
+    renderReviewContent(review) {
+
         return `
-            <div>
-                ${this.reviews}
+        <br>
+        <div class="card border-dark mb-3" style="max-width: 18rem;">
+            <div class="card-header">Review Posted ${review.created_at}</div>
+            <div class="card-body text-dark">
+                <h6 class="card-title">${review.content}</h6>
+                <p class="card-text"></p>
             </div>
+        </div>
         `
     }
 }
