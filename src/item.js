@@ -1,18 +1,18 @@
 class Item {
-    constructor(item, itemAttributes) {
-        this.id = item.id
-        this.name = itemAttributes.name
-        this.price = itemAttributes.price
-        this.description = itemAttributes.description
-        this.image_url = itemAttributes.image_url
-        this.category = itemAttributes.category
-        Item.all.push(this)
-        console.log(this)
-    }
+  constructor(item, itemAttributes) {
+    this.id = item.id;
+    this.name = itemAttributes.name;
+    this.price = itemAttributes.price;
+    this.description = itemAttributes.description;
+    this.image_url = itemAttributes.image_url;
+    this.category = itemAttributes.category;
+    Item.all.push(this);
+    console.log(this);
+  }
 
-    renderItemCard() {
-        // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
-        return `
+  renderItemCard() {
+    // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
+    return `
             <div id="item-${this.id}">
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
@@ -51,22 +51,24 @@ class Item {
                     </div>
                 </div>
             </div>
-        `
-    }
+        `;
+  }
 
-    clickEventForAllReviews() {
-        document.querySelectorAll(".card.card-body").forEach(cb => {
-            const reviewSubmitButton = cb.getElementsByTagName('button')[cb.getElementsByTagName('button').length - 1]
-            
-            reviewSubmitButton.addEventListener("click", e => {    
-                reviewFormHandler(e)
-            })
-        })
-    }
-    
-    renderReviewContent(review) {
+  clickEventForAllReviews() {
+    document.querySelectorAll(".card.card-body").forEach((cb) => {
+      const reviewSubmitButton =
+        cb.getElementsByTagName("button")[
+          cb.getElementsByTagName("button").length - 1
+        ];
 
-        return `
+      reviewSubmitButton.addEventListener("click", (e) => {
+        reviewFormHandler(e);
+      });
+    });
+  }
+
+  renderReviewContent(review) {
+    return `
         <br>
         <div class="card border-dark mb-3" style="max-width: 18rem;">
             <div class="card-header">Review Posted ${review.created_at}</div>
@@ -75,8 +77,8 @@ class Item {
                 <p class="card-text"></p>
             </div>
         </div>
-        `
-    }
+        `;
+  }
 }
 
 Item.all = [];
