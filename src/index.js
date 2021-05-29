@@ -68,17 +68,36 @@ function reviewPostFetch(content, item_id) {
     body: JSON.stringify(bodyData),
   })
     .then((response) => response.json())
+
+    // .then((recipe) => {
+    //   if (Array.isArray(recipe)) {
+    //     alert(recipe.join(", "));
+    //   } else {
+    //     console.log(recipe);
+    //     const recipeData = recipe.data;
+
+    //     newRecipe = new Recipe(recipeData, recipeData.attributes);
+
+    //     document.querySelector("#recipe-container").innerHTML +=
+    //       newRecipe.renderRecipeCard();
+    //   }
+    // })
+
     .then((review) => {
-      const reviewData = review.data;
-      let newReview = new Review(
-        review.data.attributes.item,
-        review.data.attributes.item,
-        reviewData,
-        reviewData.attributes
-      );
-      document.querySelector(
-        `#review-container-${newReview.itemId}`
-      ).innerHTML += newReview.renderReviewContent(newReview);
+      if (Array.isArray(review)) {
+        alert(review.join(", "));
+      } else {
+        const reviewData = review.data;
+        let newReview = new Review(
+          review.data.attributes.item,
+          review.data.attributes.item,
+          reviewData,
+          reviewData.attributes
+        );
+        document.querySelector(
+          `#review-container-${newReview.itemId}`
+        ).innerHTML += newReview.renderReviewContent(newReview);
+      }
     })
     .catch((err) => {
       console.log(err, "this is an error!!!");
@@ -111,12 +130,16 @@ function itemPostFetch(name, price, description, image_url, category_id) {
   })
     .then((response) => response.json())
     .then((item) => {
-      const itemData = item.data;
-      let newItem = new Item(itemData, itemData.attributes);
-      document.querySelector("#item-container").innerHTML +=
-        newItem.renderItemCard();
-      // can i add event listener once new item is appended to dom
-      newItem.clickEventForAllReviews();
+      if (Array.isArray(item)) {
+        alert(item.join(", "));
+      } else {
+        const itemData = item.data;
+        let newItem = new Item(itemData, itemData.attributes);
+        document.querySelector("#item-container").innerHTML +=
+          newItem.renderItemCard();
+        // can i add event listener once new item is appended to dom
+        newItem.clickEventForAllReviews();
+      }
     })
     .catch((err) => {
       console.log(err, "this is an error!!!");
