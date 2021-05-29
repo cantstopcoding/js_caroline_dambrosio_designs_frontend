@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     itemFormHandler(e);
     createItemForm.reset();
   });
-
-  // const loginForm = document.querySelector("#login-form");
-  // loginForm.addEventListener("submit", (e) => loginFormHandler(e));
 });
 
 function getRequestForItems() {
@@ -45,6 +42,9 @@ function getRequestForItems() {
           newItem.clickEventForAllReviews();
         });
       });
+    })
+    .catch((err) => {
+      console.log(err, "this is an error!!!");
     });
 }
 
@@ -79,6 +79,9 @@ function reviewPostFetch(content, item_id) {
       document.querySelector(
         `#review-container-${newReview.itemId}`
       ).innerHTML += newReview.renderReviewContent(newReview);
+    })
+    .catch((err) => {
+      console.log(err, "this is an error!!!");
     });
 }
 
@@ -114,41 +117,8 @@ function itemPostFetch(name, price, description, image_url, category_id) {
         newItem.renderItemCard();
       // can i add event listener once new item is appended to dom
       newItem.clickEventForAllReviews();
+    })
+    .catch((err) => {
+      console.log(err, "this is an error!!!");
     });
 }
-
-// function loginFormHandler(e) {
-//     e.preventDefault();
-//     const emailInput = e.target.querySelector('#login-email').value
-//     const passwordInput = e.target.querySelector('#login-password').value
-//     loginFetch(emailInput, passwordInput)
-// }
-
-// function loginFetch(email, password) {
-//     const bodyData = {user: { email, password }}
-
-//     fetch(loginApi, {
-//         method: "POST",
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(bodyData)
-//     })
-//     .then(response => response.json())
-//     .then(json => {
-//         localStorage.setItem('token', json.jwt)
-//         renderUserProfile()
-//     })
-// }
-
-// function renderUserProfile() {
-//     console.log(localStorage.getItem('token'));
-//     fetch(profileApi, {
-//       method: 'GET',
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem('token')}`
-//       }
-//     })
-//     .then(response => response.json())
-//     .then(json => {
-//       alert(`Hi ${json.user.data.attributes.first_name}!`)
-//     })
-// }
