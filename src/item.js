@@ -10,6 +10,12 @@ class Item {
     console.log(this);
   }
 
+  static findById(id) {
+    return this.all.find((item) => {
+      return parseInt(item.id) === id;
+    });
+  }
+
   renderItemCard() {
     // debugger source: https://www.youtube.com/watch?v=2xvuGWI3H58&t=349s 102:19
     return `
@@ -24,7 +30,7 @@ class Item {
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button data-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
                                 <small class="text-muted">Category: ${this.category.name}</small>
                             </div>
