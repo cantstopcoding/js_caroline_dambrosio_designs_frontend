@@ -7,6 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
     itemFormHandler(e);
     createItemForm.reset();
   });
+
+  editButton = document.querySelector("#item-container");
+
+  editButton.addEventListener("click", (e) => {
+    console.log("clicked");
+    const id = parseInt(e.target.dataset.id);
+    const item = Item.findById(id);
+    document.querySelector("#update-item").innerHTML = item.renderUpdateForm();
+    console.log(item);
+  });
 });
 
 function getRequestForItems() {
@@ -29,17 +39,17 @@ function getRequestForItems() {
               cont.getElementsByClassName("container").length - 1
             ];
 
-          reviewContainer.innerHTML += `
-                    ${filteredReviewsArr
-                      .map(
-                        (r) => `
-                    ${newItem.renderReviewContent(r)}
-                    `
-                      )
-                      .join("")}
-                `;
+          // reviewContainer.innerHTML += `
+          //           ${filteredReviewsArr
+          //             .map(
+          //               (r) => `
+          //           ${newItem.renderReviewContent(r)}
+          //           `
+          //             )
+          //             .join("")}
+          //       `;
 
-          newItem.clickEventForAllReviews();
+          // newItem.clickEventForAllReviews();
         });
       });
     })
@@ -50,7 +60,7 @@ function getRequestForItems() {
 
 function reviewFormHandler(e) {
   e.preventDefault();
-  console.log(e);
+  // console.log(e);
   const contentInput = document.querySelector(
     `#input-${e.target.dataset.itemId}`
   ).value;
@@ -68,21 +78,6 @@ function reviewPostFetch(content, item_id) {
     body: JSON.stringify(bodyData),
   })
     .then((response) => response.json())
-
-    // .then((recipe) => {
-    //   if (Array.isArray(recipe)) {
-    //     alert(recipe.join(", "));
-    //   } else {
-    //     console.log(recipe);
-    //     const recipeData = recipe.data;
-
-    //     newRecipe = new Recipe(recipeData, recipeData.attributes);
-
-    //     document.querySelector("#recipe-container").innerHTML +=
-    //       newRecipe.renderRecipeCard();
-    //   }
-    // })
-
     .then((review) => {
       if (Array.isArray(review)) {
         alert(review.join(", "));
