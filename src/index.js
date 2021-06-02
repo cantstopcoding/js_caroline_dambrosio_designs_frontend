@@ -7,7 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
     itemFormHandler(e);
     createItemForm.reset();
   });
+
+  const itemContainer = document.querySelector("#item-container");
+  itemContainer.addEventListener("click", (e) => {
+    console.log(!!e.target.dataset.deleteItemId);
+    if (e.target.dataset.deleteItemId) {
+      deleteItem(e);
+    }
+  });
 });
+
+const deleteItem = (e) => {
+  e.preventDefault();
+  fetch(`http://localhost:3000/api/v1/items/${e.target.dataset.deleteItemId}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+    Accept: "application/json",
+  });
+  e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+};
 
 function getRequestForItems() {
   const itemsApi = new API();
@@ -68,21 +86,6 @@ function reviewPostFetch(content, item_id) {
     body: JSON.stringify(bodyData),
   })
     .then((response) => response.json())
-
-    // .then((recipe) => {
-    //   if (Array.isArray(recipe)) {
-    //     alert(recipe.join(", "));
-    //   } else {
-    //     console.log(recipe);
-    //     const recipeData = recipe.data;
-
-    //     newRecipe = new Recipe(recipeData, recipeData.attributes);
-
-    //     document.querySelector("#recipe-container").innerHTML +=
-    //       newRecipe.renderRecipeCard();
-    //   }
-    // })
-
     .then((review) => {
       if (Array.isArray(review)) {
         alert(review.join(", "));
