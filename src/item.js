@@ -29,7 +29,7 @@ class Item {
                 <p class="card-text">$${this.price}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button data-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    <button data-edit-item-display-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseUpdateForm-${this.id}" aria-expanded="false" aria-controls="collapseUpdateForm-${this.id}">Edit</button>
                     <button data-delete-item-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                   </div>
                   <small class="text-muted">Category: ${this.category.name}</small> 
@@ -40,6 +40,7 @@ class Item {
                   Reviews	
                 </button>	
               </p>
+
               <div class="collapse" id="collapseExample-${this.id}">
                 <div class="card card-body">
                   <form id="create-review-form">
@@ -47,29 +48,20 @@ class Item {
                       <label for="content">Write a Review...</label>
                       <textarea class="form-control" id="input-${this.id}" name="content" value="" rows="3"></textarea>
                     </div>
-                    <button data-item-id="${this.id}" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
+                    <button data-review-submit-id="${this.id}" class="btn btn-sm btn-outline-secondary" type="submit" value="Submit">Submit</button>
                   </form>
                   <div class="container" id="review-container-${this.id}">
                       
                   </div>
                 </div>
               </div>
+
+            
+
             </div>
           </div>
         </div>
       `;
-  }
-
-  clickEventForAllReviews() {
-    document.querySelectorAll(".card.card-body").forEach((cb) => {
-      const reviewSubmitButton =
-        cb.getElementsByTagName("button")[
-          cb.getElementsByTagName("button").length - 1
-        ];
-      reviewSubmitButton.addEventListener("click", (e) => {
-        reviewFormHandler(e);
-      });
-    });
   }
 
   renderReviewContent(review) {
