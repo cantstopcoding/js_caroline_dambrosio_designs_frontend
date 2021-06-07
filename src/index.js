@@ -10,9 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const itemContainer = document.querySelector("#item-container");
   itemContainer.addEventListener("click", (e) => {
-    console.log(!!e.target.dataset.deleteItemId);
+    console.log(e.target.dataset.reviewSubmitId);
+
+    if (e.target.dataset.reviewSubmitId) {
+      reviewFormHandler(e);
+    }
+
     if (e.target.dataset.deleteItemId) {
       deleteItem(e);
+    }
+
+    if (e.target.dataset.editItemDisplayId) {
+      const id = parseInt(e.target.dataset.editItemDisplayId);
+      const item = Item.findById(id);
+      console.log(item);
     }
   });
 });
@@ -56,8 +67,6 @@ function getRequestForItems() {
                       )
                       .join("")}
                 `;
-
-          newItem.clickEventForAllReviews();
         });
       });
     })
@@ -70,11 +79,12 @@ function reviewFormHandler(e) {
   e.preventDefault();
   console.log(e);
   const contentInput = document.querySelector(
-    `#input-${e.target.dataset.itemId}`
+    `#input-${e.target.dataset.reviewSubmitId}`
   ).value;
-  reviewPostFetch(contentInput, e.target.dataset.itemId);
+  reviewPostFetch(contentInput, e.target.dataset.reviewSubmitId);
 
-  document.querySelector(`#input-${e.target.dataset.itemId}`).value = "";
+  document.querySelector(`#input-${e.target.dataset.reviewSubmitId}`).value =
+    "";
 }
 
 function reviewPostFetch(content, item_id) {
@@ -140,8 +150,6 @@ function itemPostFetch(name, price, description, image_url, category_id) {
         let newItem = new Item(itemData, itemData.attributes);
         document.querySelector("#item-container").innerHTML +=
           newItem.renderItemCard();
-        // can i add event listener once new item is appended to dom
-        newItem.clickEventForAllReviews();
       }
     })
     .catch((err) => {
