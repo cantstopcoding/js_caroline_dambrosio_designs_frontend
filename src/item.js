@@ -29,17 +29,47 @@ class Item {
                 <p class="card-text">$${this.price}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button data-edit-item-display-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseUpdateForm-${this.id}" aria-expanded="false" aria-controls="collapseUpdateForm-${this.id}">Edit</button>
+                  <button data-edit-item-display-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseUpdateForm-${this.id}" aria-expanded="false" aria-controls="collapseUpdateForm-${this.id}">Edit</button>                     
+                  <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample-${this.id}" aria-expanded="false" aria-controls="collapseExample-${this.id}">	                        
+                    Reviews	
+                  </button>	
                     <button data-delete-item-id=${this.id} type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                   </div>
                   <small class="text-muted">Category: ${this.category.name}</small> 
                 </div>
               </div>
-              <p>	                        
-                <button id="reviews-button" class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" data-target="#collapseExample-${this.id}" aria-expanded="false" aria-controls="collapseExample-${this.id}">	                        
-                  Reviews	
-                </button>	
-              </p>
+              <div class="collapse" id="collapseUpdateForm-${this.id}">
+                <div class="card card-body">
+                  <form id="edit-review-form">
+                  <div class="form-group">
+                  <label for="name">Name:</label>
+                    <input id="input-name" type="text" name="name" value="${this.name}" placeholder="Enter your Item name..." class="form-control"> <!-- aria-describedby="nameHelp" -->
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input id='input-description' name="description" class="form-control"  rows="8" cols="80" value="${this.description}" placeholder="Enter your Item description..."></input>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input id="input-price" type="number" name="price" value="${this.price}" placeholder="Enter your Item price..." class="form-control"> <!-- aria-describedby="nameHelp" -->
+                </div>
+                <div class="form-group">
+                    <label for="image">Image Url:</label>
+                    <input id='input-url' type="text" name="image" value="${this.image_url}" placeholder="Enter Item Image URL..." class="form-control"> <!-- aria-describedby="nameHelp" -->
+                </div>
+                <div class="form-group">  
+                <!-- <label for="categories">Category</label> -->
+                <label for="categories">Category:</label>  
+                <select id="categories" class="form-control">
+                        <option value="1">Dresses</option>
+                        <option value="2">Purses</option>
+                        <option value="3">Sandles</option>
+                    </select>
+                </div>
+                <button data-update-item-submit-id=${this.id} type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+              </div>
 
               <div class="collapse" id="collapseExample-${this.id}">
                 <div class="card card-body">

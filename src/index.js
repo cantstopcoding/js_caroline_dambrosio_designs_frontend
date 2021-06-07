@@ -3,12 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   getRequestForItems();
 
   const createItemForm = document.querySelector("#create-item-form");
+
   createItemForm.addEventListener("submit", (e) => {
     itemFormHandler(e);
     createItemForm.reset();
   });
 
   const itemContainer = document.querySelector("#item-container");
+
   itemContainer.addEventListener("click", (e) => {
     console.log(e.target.dataset.reviewSubmitId);
 
@@ -25,8 +27,46 @@ document.addEventListener("DOMContentLoaded", () => {
       const item = Item.findById(id);
       console.log(item);
     }
+
+    console.log(e.target.dataset.reviewSubmitId);
+    if (e.target.dataset.updateItemSubmitId) {
+      updateFormHandler(e);
+    }
   });
 });
+
+const updateFormHandler = (e) => {
+  e.preventDefault();
+  const form = e.target.parentElement;
+
+  const name = form.querySelector("input").value;
+  const description = form.description.value;
+  const price = form.price.value;
+  const image_url = form.image.value;
+  const category_id = form.categories.value;
+
+  const bodyData = { name, price, description, image_url, category_id };
+  const itemsApi = new API();
+  fetch(
+    `http://localhost:3000/api/v1/items/${e.target.dataset.updateItemSubmitId}`,
+    {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(bodyData),
+    }
+  )
+    .then((response) => response.json())
+    .then((item) => {
+      if (Array.isArray(item)) {
+        alert(item.join(", "));
+      } else {
+        const itemData = item.data;
+        let newItem = new Item(itemData, itemData.attributes);
+        document.querySelector("#item-container").innerHTML +=
+          newItem.renderItemCard();
+      }
+    });
+};
 
 const deleteItem = (e) => {
   e.preventDefault();
@@ -141,7 +181,9 @@ function itemPostFetch(name, price, description, image_url, category_id) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(bodyData),
   })
-    .then((response) => response.json())
+    .then(function (response) {
+      return response.json();
+    })
     .then((item) => {
       if (Array.isArray(item)) {
         alert(item.join(", "));
