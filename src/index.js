@@ -46,7 +46,6 @@ const updateFormHandler = (e) => {
   const category_id = form.categories.value;
 
   const bodyData = { name, price, description, image_url, category_id };
-  const itemsApi = new API();
   fetch(
     `http://localhost:3000/api/v1/items/${e.target.dataset.updateItemSubmitId}`,
     {
@@ -62,9 +61,21 @@ const updateFormHandler = (e) => {
       } else {
         const itemData = item.data;
         let newItem = new Item(itemData, itemData.attributes);
-        document.querySelector("#item-container").innerHTML +=
+
+        const itemCard = document.querySelector(`#item-${newItem.id}`);
+        const imageNode = itemCard.getElementsByTagName("img")[0];
+
+        const cardTitleNode = itemCard.getElementsByTagName("h5")[0];
+        cardTitleNode.innerHTML = "";
+        cardTitleNode.innerHTML += newItem.name;
+
+        // remove the card and create a new card and render the item card to the element it creates
+        document.querySelector(`#item-${newItem.id}`).innerHTML +=
           newItem.renderItemCard();
       }
+    })
+    .catch((err) => {
+      console.log(err, "this is an error!!!");
     });
 };
 
