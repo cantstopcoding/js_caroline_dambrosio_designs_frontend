@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const itemContainer = document.querySelector("#item-container");
   itemContainer.addEventListener("click", (e) => {
     console.log(e.target.dataset.reviewSubmitId);
-
     if (e.target.dataset.reviewSubmitId) {
       reviewFormHandler(e);
     }
@@ -35,7 +34,10 @@ const deleteItem = (e) => {
     headers: { "Content-Type": "application/json" },
     Accept: "application/json",
   });
-  e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.remove();
+  const itemCard =
+    e.target.parentElement.parentElement.parentElement.parentElement
+      .parentElement.parentElement;
+  itemCard.remove();
 };
 
 function getRequestForItems() {
@@ -48,25 +50,17 @@ function getRequestForItems() {
         document.querySelector("#item-container").innerHTML +=
           newItem.renderItemCard();
 
-        document.querySelectorAll("#item-container").forEach((cont) => {
-          let reviewsArr = item.attributes.reviews.map((r) => r);
-          let filteredReviewsArr = reviewsArr.filter(
-            (r) => r.item_id === parseInt(item.id)
-          );
+        document.querySelectorAll("#item-container").forEach((c) => {
+          const reviewsArr = item.attributes.reviews;
           const reviewContainer =
-            cont.getElementsByClassName("container")[
-              cont.getElementsByClassName("container").length - 1
+            c.getElementsByClassName("container")[
+              c.getElementsByClassName("container").length - 1
             ];
 
-          reviewContainer.innerHTML += `
-                    ${filteredReviewsArr
-                      .map(
-                        (r) => `
-                    ${newItem.renderReviewContent(r)}
-                    `
-                      )
-                      .join("")}
-                `;
+          reviewContainer.innerHTML += `${reviewsArr
+            .map((r) => `${newItem.renderReviewContent(r)}`)
+            .join("")}
+          `;
         });
       });
     })
